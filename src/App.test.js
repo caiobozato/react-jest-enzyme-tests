@@ -63,3 +63,19 @@ test("clicking button decrements counter display", () => {
   const count = findByTestAttr(wrapper, "count");
   expect(count.text()).toBe("0");
 });
+
+test("clicking decrement button when count is 0 shows error message", () => {
+  const wrapper = setupWrapper();
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+  decrementButton.simulate("click");
+  const errorMessage = wrapper.find("[error='true']");
+  expect(errorMessage.length).toBe(1);
+});
+
+test("clicking increments button removes the error message", () => {
+  const wrapper = setupWrapper();
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+  incrementButton.simulate("click");
+  const errorMessage = wrapper.find("[error='true']");
+  expect(errorMessage.length).toBe(0);
+});
