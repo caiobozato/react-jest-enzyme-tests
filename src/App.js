@@ -14,17 +14,34 @@ function App() {
   }
 
   return (
-    <div data-test="app-component">
-      <h1 data-test="display-component">
-        Count: <span data-test="count">{count}</span>
-      </h1>
-      <button data-test="increment-button" onClick={() => increment()}>
-        Increment
-      </button>
-      <button data-test="decrement-button" onClick={() => decrement()}>
-        Decrement Counter
-      </button>
-      {error && <h2 error={`${error}`}>Can't go below 0</h2>}
+    <div className="app-component" data-test="app-component">
+      <div className="container">
+        <h1 data-test="display-component">
+          Count:&nbsp;<span data-test="count">{count}</span>
+        </h1>
+        <div className="button-container">
+          <button
+            className="button button--blue"
+            data-test="increment-button"
+            onClick={() => increment()}
+          >
+            Increment
+          </button>
+          <button
+            className="button button--purple"
+            data-test="decrement-button"
+            onClick={() => decrement()}
+          >
+            Decrement
+          </button>
+        </div>
+
+        {error && (
+          <h2 style={{ color: "red" }} error={`${error}`}>
+            Can't go below 0
+          </h2>
+        )}
+      </div>
     </div>
   );
 }
